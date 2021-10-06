@@ -14,11 +14,10 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import style from "../style/style";
 
-import FilledButton from "./KickAssSvg/filledbutton";
+import Outline from "../KickAssSvg/outline_button.svg";
 
-import Outline from "./KickAssSvg/outline_button";
-import style from "./style/style";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 
 const DATA = [
@@ -55,17 +54,24 @@ const DATA = [
 function Item({ id, title, selected, onSelect }) {
   return (
     <View>
-      <View style={{ marginLeft: 10 }}>
-        <TouchableOpacity onPress={() => onSelect(id)}>
+      <View
+        style={{
+          left: "8%",
+          alignItems: "center",
+          justifyContent: "center",
+          alignSelf: "center",
+        }}
+      >
+        <TouchableOpacity onPress={() => onSelect(id, title)}>
           <Outline fill={selected ? "#d2a7ae" : null} />
         </TouchableOpacity>
       </View>
       <View
         style={{
-          alignItems: "center",
           position: "absolute",
-          marginLeft: 20,
-          marginTop: 10,
+
+          top: "20%",
+          left: "20%",
         }}
       >
         <TouchableOpacity onPress={() => onSelect(id)}>
@@ -80,23 +86,27 @@ function Item({ id, title, selected, onSelect }) {
 
 const Region = () => {
   const [selected, setSelected] = React.useState(new Map());
+  const [data, setdata] = useState([]);
 
   const onSelect = React.useCallback(
-    (id) => {
+    (id, title) => {
       const newSelected = new Map(selected);
       newSelected.set(id, !selected.get(id));
 
       setSelected(newSelected);
+      if (!selected.get(id)) {
+      } else {
+      }
     },
     [selected]
   );
   return (
-    <SafeAreaView>
-      <View style={{ margin: 25, marginLeft: 10 }}>
-        <Text style={{ color: "#d2a7ae" }}>Region</Text>
+    <SafeAreaView style={{ left: "5.5%" }}>
+      <View>
+        <Text style={{ color: "#d2a7ae", left: "2%" }}>Region</Text>
       </View>
       <FlatList
-        contentContainerStyle={{ flexDirection: "row", flexWrap: "wrap" }}
+        numColumns={3}
         data={DATA}
         renderItem={({ item }) => (
           <Item

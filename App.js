@@ -9,106 +9,145 @@ import {
   Touchable,
   ScrollView,
 } from "react-native";
+
+import SliderText from "react-native-slider-text";
 import { SvgCss, Svg, Circle } from "react-native-svg";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
+  heightPercentageToDP,
 } from "react-native-responsive-screen";
-
-import FilledButton from "./KickAssSvg/filledbutton";
-
-import Outline from "./KickAssSvg/outline_button";
-import style from "./style/style";
-import { Colors } from "react-native/Libraries/NewAppScreen";
-
-const DATA = [
-  {
-    id: 1,
-    title: "New South Wales",
-  },
-  {
-    id: 2,
-    title: "Northern Territory",
-  },
-  {
-    id: 3,
-    title: "Queensland",
-  },
-  {
-    id: 4,
-    title: "South Australia",
-  },
-  {
-    id: 5,
-    title: "Tasmania",
-  },
-  {
-    id: 6,
-    title: "Victoria",
-  },
-  {
-    id: 7,
-    title: "Western Australia",
-  },
-];
-
-function Item({ id, title, selected, onSelect }) {
-  return (
-    <View>
-      <View style={{ marginLeft: 10 }}>
-        <TouchableOpacity onPress={() => onSelect(id)}>
-          <Outline fill={selected ? "#d2a7ae" : null} />
-        </TouchableOpacity>
-      </View>
-      <View
-        style={{
-          alignItems: "center",
-          position: "absolute",
-          marginLeft: 20,
-          marginTop: 10,
-        }}
-      >
-        <TouchableOpacity onPress={() => onSelect(id)}>
-          <Text style={{ fontSize: 10, color: selected ? "white" : "black" }}>
-            {title}
-          </Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
-}
+import { Entypo } from "@expo/vector-icons";
+import { Slider } from "react-native-elements/dist/slider/Slider";
+import { MultiSlider } from "@ptomasroos/react-native-multi-slider";
+import HeaderWithIcons from "./KickAssComponent/HeaderwithIcon";
+import Region from "../Svg/KickAssComponent/Region";
+import { Ionicons } from "@expo/vector-icons";
+import Jobtype from "./KickAssComponent/JobType";
+import Outline from "../Svg/KickAssSvg/filledbutton.svg";
+import { Picker } from "@react-native-picker/picker";
+import Union from "../Svg/KickAssSvg/Union 7.svg";
 
 const App = () => {
-  const [selected, setSelected] = React.useState(new Map());
+  const [value, setvalue] = useState(0);
+  const [FirstPicker, SetFirstPicker] = useState();
+  const [SecondPicker, SetSecondPicker] = useState();
 
-  const onSelect = React.useCallback(
-    (id) => {
-      const newSelected = new Map(selected);
-      newSelected.set(id, !selected.get(id));
-
-      setSelected(newSelected);
-    },
-    [selected]
-  );
   return (
     <SafeAreaView>
-      <View style={{ margin: 25, marginLeft: 10 }}>
-        <Text style={{ color: "#d2a7ae" }}>Region</Text>
+      <View>
+        <HeaderWithIcons
+          title="Search Filter"
+          icon={<Entypo name="cross" size={24} color="white" />}
+        />
+        <Region />
+        <Jobtype />
       </View>
-      <FlatList
-        contentContainerStyle={{ flexDirection: "row", flexWrap: "wrap" }}
-        data={DATA}
-        renderItem={({ item }) => (
-          <Item
-            id={item.id}
-            title={item.title}
-            selected={!!selected.get(item.id)}
-            onSelect={onSelect}
-          />
-        )}
-        keyExtractor={(item) => item.id}
-        extraData={selected}
-      />
+      <ScrollView>
+        <View style={{ left: "7%", top: "2%" }}>
+          <View
+            style={{
+              left: "5.5%",
+
+              flexDirection: "row",
+            }}
+          >
+            <View>
+              <Text style={{ fontSize: 18, color: "#d2a7ae" }}>
+                Experience Year
+              </Text>
+            </View>
+            <View style={{ left: "550%" }}>
+              <Text>{value} Year</Text>
+            </View>
+          </View>
+          <View>
+            <View style={{ width: "90%" }}>
+              <Slider
+                value={value}
+                maximumValue={10}
+                minimumValue={1}
+                step={1}
+                trackStyle={{ height: hp("0.5"), backgroundColor: "#d2a7ae" }}
+                thumbStyle={{
+                  height: 25,
+                  width: 25,
+                  backgroundColor: "#d2a7ae",
+                }}
+                onValueChange={setvalue}
+                minimumTrackTintColor="#d2a7ae"
+              />
+            </View>
+          </View>
+        </View>
+
+        <View style={{ top: "2%", left: "1%" }}>
+          <View style={{ top: "5%", left: "5.5%" }}>
+            <Text style={{ fontSize: 18, color: "#d2a7ae" }}>
+              Industrial Type
+            </Text>
+          </View>
+          <View style={{ top: "7%", alignItems: "center" }}>
+            <Union />
+          </View>
+          <View
+            style={{
+              top: "-35%",
+              left: "3.5%",
+              width: "95%",
+            }}
+          >
+            <Picker
+              selectedValue={FirstPicker}
+              onValueChange={(itemValue, itemIndex) =>
+                SetFirstPicker(itemValue)
+              }
+            >
+              <Picker.Item
+                label="Information techniology"
+                value="Information techniology"
+              />
+              <Picker.Item
+                label="Software Engineering"
+                value="Software Engineering"
+              />
+              <Picker.Item label="Computer Science" value="Computer Science" />
+            </Picker>
+          </View>
+        </View>
+        <View style={{ left: "1%" }}>
+          <View style={{ top: "5%", left: "5.5%" }}>
+            <Text style={{ fontSize: 18, color: "#d2a7ae" }}>Company</Text>
+          </View>
+          <View style={{ top: "7%", alignItems: "center" }}>
+            <Union />
+          </View>
+          <View
+            style={{
+              top: "-35%",
+              left: "3.5%",
+              width: "95%",
+            }}
+          >
+            <Picker
+              selectedValue={SecondPicker}
+              onValueChange={(itemValue, itemIndex) =>
+                SetSecondPicker(itemValue)
+              }
+            >
+              <Picker.Item
+                label="Information techniology"
+                value="Information techniology"
+              />
+              <Picker.Item
+                label="Software Engineering"
+                value="Software Engineering"
+              />
+              <Picker.Item label="Computer Science" value="Computer Science" />
+            </Picker>
+          </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

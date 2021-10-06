@@ -32,6 +32,7 @@ const style = StyleSheet.create({
     marginLeft: 24,
     marginTop: 4,
   },
+  contentContainerStyle: { flexWrap: "wrap", flexDirection: "row" },
 });
 
 export default style;
