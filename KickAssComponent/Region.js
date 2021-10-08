@@ -51,7 +51,8 @@ const DATA = [
   },
 ];
 
-function Item({ id, title, selected, onSelect }) {
+function Item({ id, title, selected, onSelect, index }) {
+  const [data, setdata] = useState([]);
   return (
     <View>
       <View
@@ -62,10 +63,11 @@ function Item({ id, title, selected, onSelect }) {
           alignSelf: "center",
         }}
       >
-        <TouchableOpacity onPress={() => onSelect(id, title)}>
+        <TouchableOpacity onPress={() => onSelect(id, title, index)}>
           <Outline fill={selected ? "#d2a7ae" : null} />
         </TouchableOpacity>
       </View>
+
       <View
         style={{
           position: "absolute",
@@ -74,7 +76,7 @@ function Item({ id, title, selected, onSelect }) {
           left: "20%",
         }}
       >
-        <TouchableOpacity onPress={() => onSelect(id)}>
+        <TouchableOpacity onPress={() => onSelect(id, title, index)}>
           <Text style={{ fontSize: 10, color: selected ? "white" : "black" }}>
             {title}
           </Text>
@@ -88,15 +90,23 @@ const Region = () => {
   const [selected, setSelected] = React.useState(new Map());
   const [data, setdata] = useState([]);
 
+  const unselect = () => {};
+
   const onSelect = React.useCallback(
-    (id, title) => {
+    (id, title, index) => {
+      const arry = new Map(selected);
       const newSelected = new Map(selected);
       newSelected.set(id, !selected.get(id));
+      console.log(index);
+      if (selected.get(id)) {
+        // console.log(data);
+        // console.log(index);
+        // data.filter((item) => item.index == index);
+      } else {
+        setdata(data + " " + id);
+      }
 
       setSelected(newSelected);
-      if (!selected.get(id)) {
-      } else {
-      }
     },
     [selected]
   );
@@ -108,12 +118,13 @@ const Region = () => {
       <FlatList
         numColumns={3}
         data={DATA}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <Item
             id={item.id}
             title={item.title}
             selected={!!selected.get(item.id)}
             onSelect={onSelect}
+            index={index}
           />
         )}
         keyExtractor={(item) => item.id}

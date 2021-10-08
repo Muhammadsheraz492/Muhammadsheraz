@@ -1,155 +1,93 @@
-import React, { useState, useCallback, useEffect } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  SafeAreaView,
-  TouchableOpacity,
-  Touchable,
-  ScrollView,
-} from "react-native";
+import React from "react";
+import { SafeAreaView } from "react-native";
+import { View, Text } from "react-native";
 
-import SliderText from "react-native-slider-text";
-import { SvgCss, Svg, Circle } from "react-native-svg";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-  heightPercentageToDP,
-} from "react-native-responsive-screen";
-import { Entypo } from "@expo/vector-icons";
-import { Slider } from "react-native-elements/dist/slider/Slider";
-import { MultiSlider } from "@ptomasroos/react-native-multi-slider";
-import HeaderWithIcons from "./KickAssComponent/HeaderwithIcon";
-import Region from "../Svg/KickAssComponent/Region";
-import { Ionicons } from "@expo/vector-icons";
-import Jobtype from "./KickAssComponent/JobType";
-import Outline from "../Svg/KickAssSvg/filledbutton.svg";
-import { Picker } from "@react-native-picker/picker";
-import Union from "../Svg/KickAssSvg/Union 7.svg";
+//import NetworkRequest from "./KickAssComponent/NetworkRequest";
+import Ap from "../Svg/index";
 
 const App = () => {
-  const [value, setvalue] = useState(0);
-  const [FirstPicker, SetFirstPicker] = useState();
-  const [SecondPicker, SetSecondPicker] = useState();
-
   return (
     <SafeAreaView>
-      <View>
-        <HeaderWithIcons
-          title="Search Filter"
-          icon={<Entypo name="cross" size={24} color="white" />}
-        />
-        <Region />
-        <Jobtype />
-      </View>
-      <ScrollView>
-        <View style={{ left: "7%", top: "2%" }}>
-          <View
-            style={{
-              left: "5.5%",
-
-              flexDirection: "row",
-            }}
-          >
-            <View>
-              <Text style={{ fontSize: 18, color: "#d2a7ae" }}>
-                Experience Year
-              </Text>
-            </View>
-            <View style={{ left: "550%" }}>
-              <Text>{value} Year</Text>
-            </View>
-          </View>
-          <View>
-            <View style={{ width: "90%" }}>
-              <Slider
-                value={value}
-                maximumValue={10}
-                minimumValue={1}
-                step={1}
-                trackStyle={{ height: hp("0.5"), backgroundColor: "#d2a7ae" }}
-                thumbStyle={{
-                  height: 25,
-                  width: 25,
-                  backgroundColor: "#d2a7ae",
-                }}
-                onValueChange={setvalue}
-                minimumTrackTintColor="#d2a7ae"
-              />
-            </View>
-          </View>
-        </View>
-
-        <View style={{ top: "2%", left: "1%" }}>
-          <View style={{ top: "5%", left: "5.5%" }}>
-            <Text style={{ fontSize: 18, color: "#d2a7ae" }}>
-              Industrial Type
-            </Text>
-          </View>
-          <View style={{ top: "7%", alignItems: "center" }}>
-            <Union />
-          </View>
-          <View
-            style={{
-              top: "-35%",
-              left: "3.5%",
-              width: "95%",
-            }}
-          >
-            <Picker
-              selectedValue={FirstPicker}
-              onValueChange={(itemValue, itemIndex) =>
-                SetFirstPicker(itemValue)
-              }
-            >
-              <Picker.Item
-                label="Information techniology"
-                value="Information techniology"
-              />
-              <Picker.Item
-                label="Software Engineering"
-                value="Software Engineering"
-              />
-              <Picker.Item label="Computer Science" value="Computer Science" />
-            </Picker>
-          </View>
-        </View>
-        <View style={{ left: "1%" }}>
-          <View style={{ top: "5%", left: "5.5%" }}>
-            <Text style={{ fontSize: 18, color: "#d2a7ae" }}>Company</Text>
-          </View>
-          <View style={{ top: "7%", alignItems: "center" }}>
-            <Union />
-          </View>
-          <View
-            style={{
-              top: "-35%",
-              left: "3.5%",
-              width: "95%",
-            }}
-          >
-            <Picker
-              selectedValue={SecondPicker}
-              onValueChange={(itemValue, itemIndex) =>
-                SetSecondPicker(itemValue)
-              }
-            >
-              <Picker.Item
-                label="Information techniology"
-                value="Information techniology"
-              />
-              <Picker.Item
-                label="Software Engineering"
-                value="Software Engineering"
-              />
-              <Picker.Item label="Computer Science" value="Computer Science" />
-            </Picker>
-          </View>
-        </View>
-      </ScrollView>
+      <Ap />
     </SafeAreaView>
   );
 };
 
 export default App;
+// import React, { useState } from "react";
+// import {
+//   FlatList,
+//   SafeAreaView,
+//   StatusBar,
+//   StyleSheet,
+//   Text,
+//   TouchableOpacity,
+// } from "react-native";
+// import
+// const DATA = [
+//   {
+//     id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+//     title: "First Item",
+//   },
+//   {
+//     id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
+//     title: "Second Item",
+//   },
+//   {
+//     id: "58694a0f-3da1-471f-bd96-145571e29d72",
+//     title: "Third Item",
+//   },
+// ];
+
+// const Item = ({ item, onPress, backgroundColor, textColor }) => (
+//   <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
+//     <Text style={[styles.title, textColor]}>{item.title}</Text>
+//   </TouchableOpacity>
+// );
+
+// const App = () => {
+//   const [selectedId, setSelectedId] = useState(null);
+
+//   const renderItem = ({ item }) => {
+//     const backgroundColor = item.id === selectedId ? "#6e3b6e" : "#f9c2ff";
+//     const color = item.id === selectedId ? "white" : "black";
+
+//     return (
+//       <Item
+//         item={item}
+//         onPress={() => setSelectedId(item.id)}
+//         backgroundColor={{ backgroundColor }}
+//         textColor={{ color }}
+//       />
+//     );
+//   };
+
+//   return (
+//     <SafeAreaView style={styles.container}>
+//       {/* <FlatList
+//         data={DATA}
+//         renderItem={renderItem}
+//         keyExtractor={(item) => item.id}
+//         extraData={selectedId}
+//       /> */}
+//       <Check1 />
+//     </SafeAreaView>
+//   );
+// };
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     marginTop: StatusBar.currentHeight || 0,
+//   },
+//   item: {
+//     padding: 20,
+//     marginVertical: 8,
+//     marginHorizontal: 16,
+//   },
+//   title: {
+//     fontSize: 32,
+//   },
+// });
+
+// export default App;
