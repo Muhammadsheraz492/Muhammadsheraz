@@ -51,7 +51,7 @@ const DATA = [
   },
 ];
 
-function Item({ id, title, selected, onSelect, index }) {
+function Item({ id, title, selected, onSelect }) {
   const [data, setdata] = useState([]);
   return (
     <View>
@@ -90,20 +90,22 @@ const Region = () => {
   const [selected, setSelected] = React.useState(new Map());
   const [data, setdata] = useState([]);
 
-  const unselect = () => {};
+  const unselect = (id) => {
+    data = data.filter(function (item) {
+      return item != "South Australia";
+    });
+  };
 
   const onSelect = React.useCallback(
-    (id, title, index) => {
+    (id, title) => {
       const arry = new Map(selected);
       const newSelected = new Map(selected);
       newSelected.set(id, !selected.get(id));
-      console.log(index);
+
       if (selected.get(id)) {
-        // console.log(data);
-        // console.log(index);
-        // data.filter((item) => item.index == index);
+        unselect(id);
       } else {
-        setdata(data + " " + id);
+        setdata(data + title);
       }
 
       setSelected(newSelected);
@@ -130,6 +132,7 @@ const Region = () => {
         keyExtractor={(item) => item.id}
         extraData={selected}
       />
+      <Text>{data}</Text>
     </SafeAreaView>
   );
 };
