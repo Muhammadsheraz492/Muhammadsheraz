@@ -28,6 +28,7 @@ const HomeStackScreen = ({ navigation }) => {
             backgroundColor: "#009387",
           },
           headerTintColor: "white",
+
           headerLeft: () => (
             //<Ionicons name="ios-menu" size={24} color="black" />
             <Ionicons.Button
@@ -82,6 +83,9 @@ const First = () => {
           //  headerTintColor: "white",
           //  headerTintColor: "white",
           headerShown: false,
+          tabBarBadgeStyle: {
+            color: "white",
+          },
 
           tabBarStyle: {
             backgroundColor: "#009387",
@@ -99,6 +103,7 @@ const First = () => {
         options={{
           //title: "About",
           //headerShown: false,
+
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="system-update" size={24} color="white" />
           ),
@@ -108,6 +113,10 @@ const First = () => {
           },
           tabBarStyle: {
             backgroundColor: "#d02860",
+          },
+          tabBarBadgeStyle: {
+            color: "white",
+            backgroundColor: "white",
           },
           headerTitleAlign: "center",
         }}
