@@ -12,7 +12,6 @@ import { Value } from "react-native-reanimated";
 import * as Animatable from "react-native-animatable";
 import SignUp from "./SignUp";
 import { StatusBar } from "expo-status-bar";
-import First from "../Screens/First";
 
 const Signin = ({ navigation }) => {
   const [Data, SetData] = useState({
@@ -156,26 +155,28 @@ const Signin = ({ navigation }) => {
                 // backgroundColor: "cyan",
               }}
             >
-              <TouchableOpacity onPress={() => navigation.navigate("First")}>
+              <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
                 <Text style={{ color: "#009387", fontSize: 20 }}>Sign up</Text>
               </TouchableOpacity>
             </View>
-            <View
-              style={{
-                top: "10%",
-                borderWidth: 2,
+            <TouchableOpacity>
+              <View
+                style={{
+                  top: "10%",
+                  borderWidth: 3,
 
-                paddingVertical: 5,
-                borderColor: "#009387",
-                alignItems: "center",
-                borderRadius: 20,
-                backgroundColor: "#009387",
-              }}
-            >
-              <TouchableOpacity>
+                  paddingVertical: 6,
+                  borderColor: "#009387",
+                  alignItems: "center",
+                  borderRadius: 25,
+                  backgroundColor: "#009387",
+                  // bottom: "50%",
+                  marginBottom: "2%",
+                }}
+              >
                 <Text style={{ color: "white", fontSize: 20 }}>Sign in</Text>
-              </TouchableOpacity>
-            </View>
+              </View>
+            </TouchableOpacity>
           </View>
         </View>
       </View>

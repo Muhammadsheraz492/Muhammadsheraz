@@ -9,10 +9,14 @@ import Splash from "./Screens/Splash";
 const Stack = createNativeStackNavigator();
 import Signin from "./Screens/Signin";
 import SignUp from "./Screens/SignUp";
+import NetworkRequest from "./Screens/NetworkRequest";
 const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        {/* NetworkRequest Screen */}
+        {/* <Stack.Screen name="NetworkRequest" component={NetworkRequest} /> */}
+
         <Stack.Screen
           name="Splash"
           component={Splash}
