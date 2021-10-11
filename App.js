@@ -4,8 +4,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Navigation } from "react-native-navigation";
 import First from "./Screens/First";
+import AfterSplash from "./Screens/AfterSplash";
 import Splash from "./Screens/Splash";
 const Stack = createNativeStackNavigator();
+import Signin from "./Screens/Signin";
+import SignUp from "./Screens/SignUp";
 const App = () => {
   return (
     <NavigationContainer>
@@ -18,6 +21,21 @@ const App = () => {
         <Stack.Screen
           name="First"
           component={First}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="AfterSplash"
+          component={AfterSplash}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Signin"
+          component={Signin}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUp}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

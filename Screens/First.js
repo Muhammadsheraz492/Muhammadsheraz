@@ -10,6 +10,8 @@ import { Ionicons } from "@expo/vector-icons";
 import Home from "./Home";
 import About from "./About";
 import { color } from "react-native-reanimated";
+import Profile from "./Profile";
+import Bookmarks from "./Bookmarks";
 import DrawerContent from "./DrawerContent";
 const HomeScreen = createNativeStackNavigator();
 const AboutScreen = createNativeStackNavigator();
@@ -52,6 +54,8 @@ const HomeStackScreen = ({ navigation }) => {
           headerTitleAlign: "center",
         }}
       />
+      <HomeScreen.Screen name="Profile" component={Profile} />
+      <HomeScreen.Screen name="Bookmarks" component={Bookmarks} />
     </HomeScreen.Navigator>
   );
 };
@@ -60,6 +64,9 @@ const TabScreen = () => {
     <Tab.Navigator
       initialRouteName={Home}
       drawerContent={(props) => <DrawerContent {...props} />}
+      style={{
+        backgroundColor: "yellow",
+      }}
     >
       <Tab.Screen
         name="Hom"
