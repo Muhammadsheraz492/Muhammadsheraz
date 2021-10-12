@@ -1,5 +1,12 @@
-import React, { useState } from "react";
-import { View, Text, Platform, Alert, Button } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  View,
+  Text,
+  Platform,
+  Alert,
+  Button,
+  ActivityIndicator,
+} from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import {
   ScrollView,
@@ -20,6 +27,20 @@ const Signin = ({ navigation }) => {
     check_TextInputChange: false,
     secureTextEntry: false,
   });
+  const [isloading, setisloading] = useState(true);
+  useEffect(() => {});
+  setTimeout(() => {
+    setisloading(false);
+  }, 3000);
+
+  if (isloading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center" }}>
+        <ActivityIndicator size="large" color="#009387" />
+      </View>
+    );
+  }
+
   const Textinputfromuser = (val) => {
     if (val.length != 0) {
       SetData({
@@ -143,26 +164,29 @@ const Signin = ({ navigation }) => {
                 />
               </View>
             </View>
-            <View
-              style={{
-                top: "90%",
-                borderWidth: 2,
+            <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+              <View
+                style={{
+                  // top: "97%",
+                  // top: 60,
+                  marginTop: 60,
+                  borderWidth: 2,
 
-                paddingVertical: 5,
-                borderColor: "#009387",
-                alignItems: "center",
-                borderRadius: 20,
-                // backgroundColor: "cyan",
-              }}
-            >
-              <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+                  paddingVertical: 5,
+                  borderColor: "#009387",
+                  alignItems: "center",
+                  borderRadius: 20,
+                  // backgroundColor: "cyan",
+                  marginBottom: 2,
+                }}
+              >
                 <Text style={{ color: "#009387", fontSize: 20 }}>Sign up</Text>
-              </TouchableOpacity>
-            </View>
+              </View>
+            </TouchableOpacity>
             <TouchableOpacity>
               <View
                 style={{
-                  top: "10%",
+                  marginTop: 30,
                   borderWidth: 3,
 
                   paddingVertical: 6,
@@ -171,7 +195,7 @@ const Signin = ({ navigation }) => {
                   borderRadius: 25,
                   backgroundColor: "#009387",
                   // bottom: "50%",
-                  marginBottom: "2%",
+                  //  marginBottom: "2%",
                 }}
               >
                 <Text style={{ color: "white", fontSize: 20 }}>Sign in</Text>
