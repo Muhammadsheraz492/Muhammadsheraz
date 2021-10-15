@@ -17,7 +17,7 @@ const ArryFilterandDelete = () => {
   //   [Data]
   // );
   const Remove = (id) => {
-    setData(Data.filter((cv) => cv.id == id));
+    setData(Data.filter((cv) => (cv.id != id ? id : null)));
   };
 
   return (

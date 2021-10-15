@@ -17,10 +17,10 @@ const App = () => {
       <Stack.Navigator>
         {/* NetworkRequest Screen */}
         {/* <Stack.Screen name="NetworkRequest" component={NetworkRequest} /> */}
-        <Stack.Screen
+        {/* <Stack.Screen
           name="ArryFilterandDelete "
           component={ArryFilterandDelete}
-        />
+        /> */}
         <Stack.Screen
           name="Splash"
           component={Splash}
