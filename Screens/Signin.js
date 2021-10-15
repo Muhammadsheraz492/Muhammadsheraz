@@ -19,7 +19,7 @@ import { Value } from "react-native-reanimated";
 import * as Animatable from "react-native-animatable";
 import SignUp from "./SignUp";
 import { StatusBar } from "expo-status-bar";
-
+import First from "./First";
 const Signin = ({ navigation }) => {
   const [Data, SetData] = useState({
     email: " ",
@@ -27,7 +27,10 @@ const Signin = ({ navigation }) => {
     check_TextInputChange: false,
     secureTextEntry: false,
   });
+  const [Email, setEmail] = useState(" ");
+  const [Password, setpassword] = useState(" ");
   const [isloading, setisloading] = useState(true);
+  const [check, setcheck] = useState(false);
   useEffect(() => {});
   setTimeout(() => {
     setisloading(false);
@@ -62,6 +65,16 @@ const Signin = ({ navigation }) => {
       ...Data,
       secureTextEntry: !Data.secureTextEntry,
     });
+  };
+
+  const Next = () => {
+    if (Email === " ") {
+      alert("Enter your Email");
+    } else if (Password === " ") {
+      alert("Enter your PassWord");
+    } else {
+      setcheck(true);
+    }
   };
 
   return (
@@ -119,7 +132,9 @@ const Signin = ({ navigation }) => {
               <TextInput
                 style={{ left: "8%" }}
                 placeholder="Enter your Email"
-                onChangeText={(val) => Textinputfromuser(val)}
+                onChangeText={setEmail}
+                value={Email}
+                // onChangeText={(val) => Textinputfromuser(val)}
               />
               {Data.check_TextInputChange ? (
                 <Animatable.View animation="bounceIn">
@@ -143,16 +158,12 @@ const Signin = ({ navigation }) => {
             <Text>Password</Text>
           </View>
           <View style={{ width: "80%" }}>
-            <FontAwesome
-              style={{ top: "6%" }}
-              name="user-o"
-              size={20}
-              color="black"
-            />
+            <FontAwesome name="user-o" size={20} color="black" />
             <View style={{ borderBottomWidth: 1, top: "-10%" }}>
               <TextInput
                 style={{ left: "8%" }}
                 placeholder="Enter your Password"
+                onChangeText={setpassword}
                 secureTextEntry={Data.secureTextEntry ? false : true}
               />
               <View style={{ flex: 1, alignItems: "flex-end", top: "-90%" }}>
@@ -164,7 +175,7 @@ const Signin = ({ navigation }) => {
                 />
               </View>
             </View>
-            <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+            <TouchableOpacity onPress={() => Next()}>
               <View
                 style={{
                   // top: "97%",
@@ -176,11 +187,11 @@ const Signin = ({ navigation }) => {
                   borderColor: "#009387",
                   alignItems: "center",
                   borderRadius: 20,
-                  // backgroundColor: "cyan",
+                  backgroundColor: "#009387",
                   marginBottom: 2,
                 }}
               >
-                <Text style={{ color: "#009387", fontSize: 20 }}>Sign up</Text>
+                <Text style={{ color: "white", fontSize: 20 }}>Sign in</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity>
@@ -193,12 +204,12 @@ const Signin = ({ navigation }) => {
                   borderColor: "#009387",
                   alignItems: "center",
                   borderRadius: 25,
-                  backgroundColor: "#009387",
+                  //     backgroundColor: "#009387",
                   // bottom: "50%",
                   //  marginBottom: "2%",
                 }}
               >
-                <Text style={{ color: "white", fontSize: 20 }}>Sign in</Text>
+                <Text style={{ color: "#009387", fontSize: 20 }}>Sign Out</Text>
               </View>
             </TouchableOpacity>
           </View>

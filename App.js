@@ -10,13 +10,17 @@ const Stack = createNativeStackNavigator();
 import Signin from "./Screens/Signin";
 import SignUp from "./Screens/SignUp";
 import NetworkRequest from "./Screens/NetworkRequest";
+import ArryFilterandDelete from "./Screens/PraticeonComponnets/ArryFilterandDelete";
 const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
         {/* NetworkRequest Screen */}
         {/* <Stack.Screen name="NetworkRequest" component={NetworkRequest} /> */}
-
+        <Stack.Screen
+          name="ArryFilterandDelete "
+          component={ArryFilterandDelete}
+        />
         <Stack.Screen
           name="Splash"
           component={Splash}

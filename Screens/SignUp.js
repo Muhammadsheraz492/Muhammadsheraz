@@ -19,7 +19,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { Value } from "react-native-reanimated";
 import * as Animatable from "react-native-animatable";
-
+import Signin from "./Signin";
 import { StatusBar } from "expo-status-bar";
 import { Navigation } from "react-native-navigation";
 import First from "../Screens/First";
@@ -235,7 +235,7 @@ const SignUp = ({ navigation }) => {
                 </TouchableOpacity>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Signin")}>
               <View
                 style={{
                   top: "30%",
