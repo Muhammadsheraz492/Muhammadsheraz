@@ -11,6 +11,7 @@ import Signin from "./Screens/Signin";
 import SignUp from "./Screens/SignUp";
 import NetworkRequest from "./Screens/NetworkRequest";
 import ArryFilterandDelete from "./Screens/PraticeonComponnets/ArryFilterandDelete";
+import PhoneNumberVarification from "./Screens/PhoneNumberVarification";
 const App = () => {
   return (
     <NavigationContainer>
@@ -44,6 +45,11 @@ const App = () => {
         <Stack.Screen
           name="SignUp"
           component={SignUp}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="PhoneNumberVarification"
+          component={PhoneNumberVarification}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

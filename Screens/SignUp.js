@@ -22,7 +22,7 @@ import * as Animatable from "react-native-animatable";
 import Signin from "./Signin";
 import { StatusBar } from "expo-status-bar";
 import { Navigation } from "react-native-navigation";
-import First from "../Screens/First";
+import PhoneNumberVarification from "./PhoneNumberVarification";
 const SignUp = ({ navigation }) => {
   const [Data, SetData] = useState({
     email: " ",
@@ -230,12 +230,14 @@ const SignUp = ({ navigation }) => {
                   marginBottom: 65,
                 }}
               >
-                <TouchableOpacity onPress={() => navigation.navigate("First")}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("PhoneNumberVarification")}
+                >
                   <Text style={{ color: "white", fontSize: 20 }}>Sign up</Text>
                 </TouchableOpacity>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate("Signin")}>
+            <TouchableOpacity onPress={() => navigation.pop()}>
               <View
                 style={{
                   top: "30%",

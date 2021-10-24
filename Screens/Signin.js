@@ -45,6 +45,8 @@ const Signin = ({ navigation }) => {
   }
 
   const Textinputfromuser = (val) => {
+    console.log(val);
+    setEmail(val);
     if (val.length != 0) {
       SetData({
         ...Data,
@@ -65,16 +67,6 @@ const Signin = ({ navigation }) => {
       ...Data,
       secureTextEntry: !Data.secureTextEntry,
     });
-  };
-
-  const Next = () => {
-    if (Email === " ") {
-      alert("Enter your Email");
-    } else if (Password === " ") {
-      alert("Enter your PassWord");
-    } else {
-      setcheck(true);
-    }
   };
 
   return (
@@ -132,9 +124,9 @@ const Signin = ({ navigation }) => {
               <TextInput
                 style={{ left: "8%" }}
                 placeholder="Enter your Email"
-                onChangeText={setEmail}
-                value={Email}
-                // onChangeText={(val) => Textinputfromuser(val)}
+                // onChangeText={setEmail}
+                // value={Email}
+                onChangeText={(val) => Textinputfromuser(val)}
               />
               {Data.check_TextInputChange ? (
                 <Animatable.View animation="bounceIn">
@@ -175,7 +167,7 @@ const Signin = ({ navigation }) => {
                 />
               </View>
             </View>
-            <TouchableOpacity onPress={() => Next()}>
+            <TouchableOpacity onPress={() => navigation.navigate("First")}>
               <View
                 style={{
                   // top: "97%",
@@ -194,7 +186,7 @@ const Signin = ({ navigation }) => {
                 <Text style={{ color: "white", fontSize: 20 }}>Sign in</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
               <View
                 style={{
                   marginTop: 30,
